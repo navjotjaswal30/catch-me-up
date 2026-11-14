@@ -1,0 +1,427 @@
+WEBVTT
+
+00:00:00.080 --> 00:00:04.360
+Hello friends and welcome back. In this lecture we will talk about the nested loops in Java.
+
+00:00:04.360 --> 00:00:08.540
+Here is our outline. First of all we will see what are nested loops and we will see some
+
+00:00:08.540 --> 00:00:14.960
+examples and then we are going to draw a 10 by 10 multiplication table using nested loops.
+
+00:00:14.960 --> 00:00:20.160
+So let's get started. What are nested loops? Simply a loop can be nested inside another
+
+00:00:20.160 --> 00:00:26.520
+loop. So nested loops consist of an outer loop and one or more inner loops. Each time
+
+00:00:26.520 --> 00:00:30.200
+When the outer loop is executed, the inner loops are executed again.
+
+00:00:30.200 --> 00:00:31.740
+So let's see an example.
+
+00:00:31.740 --> 00:00:35.520
+Suppose that we have a for loop and as you can see we are initializing a variable i to
+
+00:00:35.520 --> 00:00:41.040
+be equal to 0 and this loop will run as long as i is less than 3 and each time we are incrementing
+
+00:00:41.040 --> 00:00:42.040
+i.
+
+00:00:42.040 --> 00:00:46.680
+So this loop is going to be executed for i equal 0 and i equal 1 and i equal 2.
+
+00:00:46.680 --> 00:00:49.400
+So this loop will be executed 3 times, alright.
+
+00:00:49.400 --> 00:00:51.940
+Now inside this loop we have another loop.
+
+00:00:51.940 --> 00:00:56.740
+As you can see, we are initializing another variable, so ntj is equal to 0, j is less
+
+00:00:56.740 --> 00:00:59.620
+than 2, and we are incrementing j.
+
+00:00:59.620 --> 00:01:04.180
+So this loop over here is the outer loop, and you are using inside the variable i.
+
+00:01:04.180 --> 00:01:08.020
+And this loop over here is the inner loop, and inside it we are using the variable j,
+
+00:01:08.020 --> 00:01:09.020
+okay?
+
+00:01:09.020 --> 00:01:13.940
+So now inside this loop, we are printing i concatenated with the space concatenated
+
+00:01:13.940 --> 00:01:15.540
+with the j, okay?
+
+00:01:15.540 --> 00:01:19.540
+And when the inner loop finishes executing, we will continue executing the outer loop,
+
+00:01:19.540 --> 00:01:20.540
+right?
+
+00:01:20.540 --> 00:01:25.020
+printing a new line over here. So let's see what's happening here exactly. So
+
+00:01:25.020 --> 00:01:29.260
+over here we're going to see the output of our program, right? First of all we
+
+00:01:29.260 --> 00:01:33.020
+will start executing the outer loop. So we are going to initialize a variable
+
+00:01:33.020 --> 00:01:36.860
+out to be equal to 0. Now we're going to check the condition. Is 0 less than 3?
+
+00:01:36.860 --> 00:01:40.740
+Yes, this is true. So we are going to execute the body of the outer loop, right?
+
+00:01:40.740 --> 00:01:44.460
+So now we're going to execute the inner loop. So we are going to initialize a
+
+00:01:44.460 --> 00:01:48.740
+variable j to be equal to 0 and now we will check the condition. Is 0 less than 2?
+
+00:01:48.740 --> 00:01:56.980
+Yes, this is true. So now we are going to execute the body of the inner loop. So we are going to print zero plus space plus zero, right?
+
+00:01:57.140 --> 00:02:02.340
+So we will have this output zero zero. So now we finished executing the body of the inner loop
+
+00:02:02.340 --> 00:02:05.860
+So we are going to execute the change over here. We are going to increment I
+
+00:02:06.100 --> 00:02:13.020
+So we are going to print zero one like this. So as you can see I is still zero and the J is changing now
+
+00:02:13.020 --> 00:02:17.620
+Let's continue. We finished executing the body of the inner loop. So we are going to increment J
+
+00:02:17.620 --> 00:02:23.860
+So now J is equal to two. So is two less than two? No, this is false. So we are done executing the inner loop
+
+00:02:23.860 --> 00:02:28.280
+So we're going to continue executing the outer loop. So we'll execute the state with over here
+
+00:02:28.280 --> 00:02:33.020
+So we are going to leave an empty line. So now imagine that over here. We have an empty line
+
+00:02:33.020 --> 00:02:38.260
+All right, so now we are done executing the body of the outer loop. So we're going to execute i plus plus
+
+00:02:38.260 --> 00:02:43.700
+We will increment i. So now i is equal to one. So is one less than three? Yes, this is true
+
+00:02:43.700 --> 00:02:48.960
+So now the same thing will happen, but now r is equal to 1. So we're going to
+
+00:02:48.960 --> 00:02:53.300
+initialize a variable j equal 0 in order to use it in the inner loop. But now you
+
+00:02:53.300 --> 00:02:57.580
+might ask how are we reinitializing the variable j. We initialize it from a
+
+00:02:57.580 --> 00:03:01.540
+little bit when we're executing the first iteration. So for now I want you to
+
+00:03:01.540 --> 00:03:05.980
+imagine that when the for loop finishes executing the variable that we declare
+
+00:03:05.980 --> 00:03:10.380
+over here is destroyed. So from a little bit when we finish executing the for
+
+00:03:10.380 --> 00:03:15.460
+loop over here, the variable j was destroyed. And now we are re-executing this for loop,
+
+00:03:15.460 --> 00:03:19.560
+right? So we are going to reinitialize the variable j to be equal to zero. Now let's
+
+00:03:19.560 --> 00:03:25.060
+continue. Is zero less than two? Yes, this is true. So we are going to print one zero,
+
+00:03:25.060 --> 00:03:31.260
+i is one and the j is zero. And now we will increment j. So we will print one one. And
+
+00:03:31.260 --> 00:03:35.740
+after that, we'll increment the j again. And now j is equal to two. So the condition over
+
+00:03:35.740 --> 00:03:40.260
+here is false. So we are finished executing the inner loop. Now we will continue executing
+
+00:03:40.260 --> 00:03:44.840
+the outer loop. So we are going to execute this statement. So we are going to leave an
+
+00:03:44.840 --> 00:03:49.180
+empty line over here. So now we are finished executing the body of the outer loop, right?
+
+00:03:49.180 --> 00:03:53.540
+So we are going to increment i. So now i is equal to two. So it's two less than three.
+
+00:03:53.540 --> 00:03:58.440
+Yes, it is. So the same thing will happen with i equal to two. So we are going to print
+
+00:03:58.440 --> 00:04:03.180
+two zero and two one. And after that, we are going to print an empty line, all right? So
+
+00:04:03.180 --> 00:04:07.800
+now when we increment i, i is now equal to three. So it's three less than three. No, this
+
+00:04:07.800 --> 00:04:12.340
+this is false, so we are done executing the outer loop. So as you saw, each time we execute
+
+00:04:12.340 --> 00:04:16.840
+the outer loop, we are re-executing the inner loop from the beginning. And after we finish
+
+00:04:16.840 --> 00:04:21.740
+executing the inner loop, we continue executing the outer loop. So now let's see another example.
+
+00:04:21.740 --> 00:04:25.560
+I want you to pause the video and have a look at this code, and try to find the output of
+
+00:04:25.560 --> 00:04:31.120
+this program. So this is the output of the program. We are printing five rows of stars.
+
+00:04:31.120 --> 00:04:35.560
+And in each row, we have a certain number of stars, right? So let's see what's happening.
+
+00:04:35.560 --> 00:04:40.760
+In the outer loop, we have a variable i starting from 1, and i is less than or equal to 5,
+
+00:04:40.760 --> 00:04:42.680
+and we are incrementing i each time.
+
+00:04:42.680 --> 00:04:46.080
+And as you can see over here, we are breaking into a new line, right?
+
+00:04:46.080 --> 00:04:51.040
+So the first loop is responsible for drawing 5 rows or 5 lines over here.
+
+00:04:51.040 --> 00:04:54.720
+Now imagine that you are executing the first iteration of the outer loop.
+
+00:04:54.720 --> 00:04:56.920
+So we are going to execute the inner loop over here.
+
+00:04:56.920 --> 00:05:01.960
+We are initializing a variable j to be equal to 1, and the j is less than or equal to i.
+
+00:05:01.960 --> 00:05:03.920
+And then we are incrementing j.
+
+00:05:03.920 --> 00:05:06.020
+And after that, we are printing a star.
+
+00:05:06.020 --> 00:05:10.940
+So the end loop is responsible for printing the stars in each row, okay?
+
+00:05:10.940 --> 00:05:13.820
+And as you can see, the condition over here is related to i.
+
+00:05:13.820 --> 00:05:16.700
+Because on the first line, we are printing one star.
+
+00:05:16.700 --> 00:05:19.260
+So when i is equal to one, we have one star.
+
+00:05:19.260 --> 00:05:21.420
+When i is equal to two, we have two stars.
+
+00:05:21.420 --> 00:05:23.700
+So the number of stars is equal to i.
+
+00:05:23.700 --> 00:05:27.740
+And this is why the condition over here is j is less than or equal to i.
+
+00:05:27.740 --> 00:05:30.780
+So the star will be printed i times, okay?
+
+00:05:30.780 --> 00:05:33.900
+And after we finish printing all the stars in the current row,
+
+00:05:33.900 --> 00:05:37.980
+We are going to get to a new line so that in the next time we print the stars in a new
+
+00:05:37.980 --> 00:05:38.980
+row.
+
+00:05:38.980 --> 00:05:39.980
+All right.
+
+00:05:39.980 --> 00:05:40.980
+So let's go over the code in more details.
+
+00:05:40.980 --> 00:05:42.980
+First of all, I is equal to one.
+
+00:05:42.980 --> 00:05:44.340
+So this condition is true.
+
+00:05:44.340 --> 00:05:45.980
+So we're going to execute this loop.
+
+00:05:45.980 --> 00:05:49.620
+J is equal to one and J should be less than or equal to one, right?
+
+00:05:49.620 --> 00:05:51.220
+So is one less than or equal to one?
+
+00:05:51.220 --> 00:05:52.380
+Yes, this is true.
+
+00:05:52.380 --> 00:05:55.940
+So we're going to print a star and after that we'll increment J.
+
+00:05:55.940 --> 00:05:59.220
+So now J is equal to two is two less than or equal to one?
+
+00:05:59.220 --> 00:06:00.460
+No, this is false.
+
+00:06:00.460 --> 00:06:02.220
+So we are done printing the stars.
+
+00:06:02.220 --> 00:06:03.820
+We are done executing the inner loop.
+
+00:06:03.820 --> 00:06:08.060
+we will continue and we're going to go to a new line. So now we are at this point over
+
+00:06:08.060 --> 00:06:13.260
+here. Now we will increment i, i is equal to 2. So is 2 less than or equal to 5? Yes,
+
+00:06:13.260 --> 00:06:17.820
+this is true. So now we will execute this loop, j is equal to 1 and j should be less than or
+
+00:06:17.820 --> 00:06:22.380
+equal to 2. So is 1 less than or equal to 2? Yes, this is true. So we're going to print
+
+00:06:22.380 --> 00:06:27.020
+a star and after that increment j. So now j is equal to 2 is 2 less than or equal to
+
+00:06:27.020 --> 00:06:31.620
+2? Yes, this is true. So we're going to print another star and not that I'm using the print
+
+00:06:31.620 --> 00:06:35.620
+method over here. So as you can see, we have two stars printed. After that, we are going
+
+00:06:35.620 --> 00:06:41.260
+to increment j. So now j is equal to 3. Is it 3 less than or equal to 2? No, this is false.
+
+00:06:41.260 --> 00:06:45.260
+So we are done executing this loop. So we will continue executing the outer loop and we will
+
+00:06:45.260 --> 00:06:50.000
+get to a new line. And this will continue up until i is equal to 5. We will print 5 stars
+
+00:06:50.000 --> 00:06:54.060
+and then we will get to a new line. And after that, we will increment i. So i is equal
+
+00:06:54.060 --> 00:06:59.060
+to 6. Is 6 less than or equal to 5? No, this is false. So we are done executing the outer
+
+00:06:59.060 --> 00:07:05.620
+Now, let's have a small exercise. I want you to draw a multiplication table. As you can see, it is a 10 by 10
+
+00:07:05.940 --> 00:07:12.900
+Multiplication table. So we have 10 rows and in each row we have 10 columns. So for example, in the first row
+
+00:07:12.900 --> 00:07:21.860
+we are working with the number 1 and you are printing 1 multiplied by 1, 2 multiplied by 1, 3 multiplied by 1, up until 10 multiplied by 1.
+
+00:07:21.860 --> 00:07:26.740
+When you finish from the first row, we are getting to a new line and now we are working with the number 2.
+
+00:07:26.740 --> 00:07:33.660
+We are displaying 2 multiplied by 1 2 multiplied by 2 up until 2 multiplied by 10 and this will continue up until 10
+
+00:07:33.660 --> 00:07:39.140
+We are going to display 10 multiplied by 1 10 multiplied by 2 up until 10 multiplied by 10
+
+00:07:39.140 --> 00:07:43.920
+So over here we have an outer loop which is responsible for printing 10 lines, right?
+
+00:07:43.920 --> 00:07:50.980
+And the inner loop is responsible for printing these values over here. We are printing 10 values in each row, okay?
+
+00:07:50.980 --> 00:07:56.140
+So pause the video take your time and try to solve this exercise. Okay, so now let's see the solution
+
+00:07:56.140 --> 00:08:01.580
+The outer loop starts from i is equal to 1 as long as i is less than or equal to 10 and each time
+
+00:08:01.580 --> 00:08:06.620
+we will increment i by 1. And this is because we have 10 rows and the first number is 1 and the
+
+00:08:06.620 --> 00:08:12.220
+last number is 10, right? Now each time we want to multiply the number by all the numbers starting
+
+00:08:12.220 --> 00:08:17.660
+from 1 up until 10. So over here we have another inner loop starting from 1 up until 10 and each
+
+00:08:17.660 --> 00:08:23.420
+time we are incrementing j. And inside this loop we are going to print i multiplied by j followed
+
+00:08:23.420 --> 00:08:28.620
+followed by a space. So in the first iteration, i is equal to 1, right? So we'll start executing
+
+00:08:28.620 --> 00:08:34.520
+the inner loop. So we are going to print 1 multiplied by 1, then 1 multiplied by 2, up
+
+00:08:34.520 --> 00:08:39.220
+until 1 multiplied by 10. And after we finish executing the inner loop, we are going to
+
+00:08:39.220 --> 00:08:44.060
+get a new line and increment i. So now i is equal to 2. So we'll do the same thing with
+
+00:08:44.060 --> 00:08:49.660
+i equal 2. We are going to print 2 multiplied by 1, 2 multiplied by 2, up until 2 multiplied
+
+00:08:49.660 --> 00:08:54.760
+by 10. And then we'll go to a new line. And this will continue up until i equal 10. We
+
+00:08:54.760 --> 00:09:00.180
+are going to print 10 multiplied by 1, 10 multiplied by 2, up until 10 multiplied by 10.
+
+00:09:00.180 --> 00:09:04.540
+And after that we'll increment i and now i is equal to 11. So 11 less than or equal
+
+00:09:04.540 --> 00:09:09.420
+to 10, this is false. So we are done executing the outer loop. So for simplicity, our for
+
+00:09:09.420 --> 00:09:14.100
+loop is responsible for the rows and our inner loop is responsible for the values or
+
+00:09:14.100 --> 00:09:19.380
+for the columns in each row. Alright? Now have a look at this note over here. The name
+
+00:09:19.380 --> 00:09:23.200
+of the variable in the outer loop must be different than the name of the variable in
+
+00:09:23.200 --> 00:09:28.200
+the inner loop. So for example, suppose that you have a for loop and inside that you have
+
+00:09:28.200 --> 00:09:33.240
+an integer i which is equal to 1. And inside this loop you have another loop and also we
+
+00:09:33.240 --> 00:09:37.320
+are initializing the variable i to be equal to 1. So we are redeclaring a variable
+
+00:09:37.320 --> 00:09:42.880
+that is called i. So this code will produce an error because we already defined i over
+
+00:09:42.880 --> 00:09:48.400
+here. So this variable i is going to be used inside the outer loop, right? So inside the
+
+00:09:48.400 --> 00:09:52.840
+outer loop you cannot declare another variable called i and later on we will talk more about
+
+00:09:52.840 --> 00:09:54.480
+this in details.
+
+00:09:54.480 --> 00:09:57.000
+So this is it, thanks for watching and I'll see you in the next video.
