@@ -495,30 +495,32 @@ export default function Home() {
 
   return (
     <>
-      <header className="top" id="top"><a className="brand" href="#top"><span className="logo" aria-hidden="true">↶</span> Catch Me Up</a>
-        <label className="mode-picker">
-          <span>Mode</span>
-          <select value={viewMode} onChange={(event) => setViewMode(event.target.value)}>
-            <option value="view-1">View 1</option>
-            <option value="view-2">View 2</option>
-          </select>
-        </label>
-      </header>
-      <main className="home-main" data-view={viewMode}>
-        <section className="welcome">
-          <div className="welcome-copy">
-            <h1>Find your place.<br /><span>Keep learning.</span></h1>
-            <p>Watching a lecture but randomly get lost? Catch Me Up, your personal AI-prof, puts you back on track and removes the guess work.</p>
-            <div className="actions">
-              <a className="hero-cta" href="#learn">Start learning <span aria-hidden="true">↓</span></a>
-            </div>
-          </div>
-          <div className="welcome-guide"><ol className="welcome-steps" aria-label="Three steps to get unstuck">
-            <li><span className="step-number" aria-hidden="true">1</span><div><h2>Select a lecture</h2><p>Choose a video and its matching transcript from the library.</p></div></li>
-            <li><span className="step-number" aria-hidden="true">2</span><div><h2>Flag where you got lost</h2><p>Mark a moment so AI can find an earlier explanation.</p></div></li>
-            <li><span className="step-number" aria-hidden="true">3</span><div><h2>Pick up where you left off</h2><p>Review the missing idea, then resume and check your understanding.</p></div></li>
-          </ol></div>
-        </section>
+          <main className="home-main" data-view={viewMode}>
+      <div className="mode-toggle-wrap">
+        <div
+          className="mode-toggle"
+          role="group"
+          aria-label="Accessibility mode"
+          style={{
+            '--active-index': modeOptions.findIndex((mode) => mode.value === viewMode),
+          }}
+        >
+          <span className="mode-indicator" aria-hidden="true" />
+          {modeOptions.map((mode) => (
+            <button
+              key={mode.value}
+              type="button"
+              className="mode-option"
+              aria-label={mode.label}
+              aria-pressed={viewMode === mode.value}
+              title={mode.label}
+              onClick={() => setViewMode(mode.value)}
+            >
+              <ModeIcon mode={mode.value} />
+            </button>
+          ))}
+        </div>
+      </div>
         <section className="learning" id="learn" aria-label="Learn">
           {notice && <p role="status" className="notice">{notice} <button className="quiet" onClick={() => setNotice('')}>Dismiss</button></p>}
           <div className="lecture-area" style={railHeight ? { '--rail-height': railHeight + 'px' } : undefined}>
