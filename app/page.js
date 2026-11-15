@@ -30,7 +30,58 @@ function getRecoveryClip(lecture, anchor, earlierThan) {
 
 const formats = { clip: 'Replay clip', analogy: 'Explanation & analogy', visual: 'Step through' };
 
+const modeOptions = [
+  { value: 'balanced', label: 'Balanced' },
+  { value: 'focus', label: 'Focus & Sensory' },
+  { value: 'reading', label: 'Reading & Listening' },
+  { value: 'flexible', label: 'Flexible Interaction' },
+];
+
+function ModeIcon({ mode }) {
+  const common = {
+    width: 27,
+    height: 27,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.8,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    'aria-hidden': true,
+  };
+
+  if (mode === 'balanced') {
+    return <svg {...common}>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="M3.5 12h2M18.5 12h2" />
+    </svg>;
+  }
+
+  if (mode === 'focus') {
+    return <svg {...common}>
+      <path d="M8 3H4a1 1 0 0 0-1 1v4M16 3h4a1 1 0 0 1 1 1v4M21 16v4a1 1 0 0 1-1 1h-4M8 21H4a1 1 0 0 1-1-1v-4" />
+      <circle cx="12" cy="12" r="3.5" />
+    </svg>;
+  }
+
+  if (mode === 'reading') {
+    return <svg {...common}>
+      <path d="M12 6.5C9.5 4.5 6 4 3 5v14c3-1 6.5-.5 9 1.5 2.5-2 6-2.5 9-1.5V5c-3-1-6.5-.5-9 1.5Z" />
+      <path d="M12 6.5v14M6 8.5c1.5-.3 3-.1 4.5.7M18 8.5c-1.5-.3-3-.1-4.5.7" />
+    </svg>;
+  }
+
+  return <svg {...common}>
+    <circle cx="5" cy="12" r="2" />
+    <circle cx="19" cy="5" r="2" />
+    <circle cx="19" cy="19" r="2" />
+    <path d="m7 11 10-5M7 13l10 5" />
+  </svg>;
+}
+
 export default function Home() {
+  const [viewMode, setViewMode] = useState('balanced');
   const [active, setActive] = useState(null);
   const [selectedTranscript, setSelectedTranscript] = useState('');
   const [loadedTranscript, setLoadedTranscript] = useState(null);
@@ -445,8 +496,15 @@ export default function Home() {
   return (
     <>
       <header className="top" id="top"><a className="brand" href="#top"><span className="logo" aria-hidden="true">↶</span> Catch Me Up</a>
+        <label className="mode-picker">
+          <span>Mode</span>
+          <select value={viewMode} onChange={(event) => setViewMode(event.target.value)}>
+            <option value="view-1">View 1</option>
+            <option value="view-2">View 2</option>
+          </select>
+        </label>
       </header>
-      <main className="home-main">
+      <main className="home-main" data-view={viewMode}>
         <section className="welcome">
           <div className="welcome-copy">
             <h1>Find your place.<br /><span>Keep learning.</span></h1>
@@ -464,9 +522,18 @@ export default function Home() {
         <section className="learning" id="learn" aria-label="Learn">
           {notice && <p role="status" className="notice">{notice} <button className="quiet" onClick={() => setNotice('')}>Dismiss</button></p>}
           <div className="lecture-area" style={railHeight ? { '--rail-height': railHeight + 'px' } : undefined}>
-            <div className="heading"><div>{viewing && <p className="eyebrow">{active.course}</p>}<h2>{viewing ? active.title : 'Learn with a lecture'}</h2></div>
-              {viewing && <div className="actions"><button onClick={() => openPicker('video')}>Select video</button><button onClick={() => mark(active, latestTime.current)}>☆ Save timestamp</button></div>}
-            </div>
+            {viewing && (
+              <div className="heading">
+                <div>
+                  <p className="eyebrow">{active.course}</p>
+                  <h2>{active.title}</h2>
+                </div>
+                <div className="actions">
+                  <button onClick={() => openPicker('video')}>Select video</button>
+                  <button onClick={() => mark(active, latestTime.current)}>☆ Save timestamp</button>
+                </div>
+              </div>
+            )}
             {!viewing ?
             <button ref={preview} className="dropzone" onClick={() => openPicker('video')}>
               <span className="drop-plus" aria-hidden="true">▷</span>
