@@ -31,7 +31,6 @@ function getRecoveryClip(lecture, anchor, earlierThan) {
 const formats = { clip: 'Replay clip', analogy: 'Explanation & analogy', visual: 'Step through' };
 
 export default function Home() {
-  const [viewMode, setViewMode] = useState('view-1');
   const [active, setActive] = useState(null);
   const [selectedTranscript, setSelectedTranscript] = useState('');
   const [loadedTranscript, setLoadedTranscript] = useState(null);
@@ -52,7 +51,6 @@ export default function Home() {
   const coachRegion = useRef(null);
   const [profile, setProfile] = useState({ marks: [], progress: {}, preference: 'clip', choices: {} });
   const [ready, setReady] = useState(false);
-  const [code, setCode] = useState('');
   const [notice, setNotice] = useState('');
   const [busy, setBusy] = useState(false);
   const [panel, setPanel] = useState(null);
@@ -89,7 +87,6 @@ export default function Home() {
       })
       .catch(() => { if (alive) setNotice('Browser storage is unavailable.'); })
       .finally(() => { if (alive) setReady(true); });
-    setCode(sessionStorage.getItem('coach-code') || '');
     return () => { alive = false; };
   }, []);
 
@@ -312,7 +309,7 @@ export default function Home() {
       ].map((cue) => ({ ...cue, text: cue.text.slice(0, 450) }));
       const response = await fetch('/api/coach', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-coach-code': code },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           mode, anchor, cues, selection: [selectedRange && 'Confusing segment from ' + selectedRange[0] + ' to ' + selectedRange[1] + ' seconds. Use transcript lines within this segment to identify the missing idea.', options.selection].filter(Boolean).join(' ').slice(0, 700), previous: previous?.slice(0, 1500),
           analogyInterest: profile.analogyInterest || undefined,
@@ -448,15 +445,8 @@ export default function Home() {
   return (
     <>
       <header className="top" id="top"><a className="brand" href="#top"><span className="logo" aria-hidden="true">↶</span> Catch Me Up</a>
-        <label className="mode-picker">
-          <span>Mode</span>
-          <select value={viewMode} onChange={(event) => setViewMode(event.target.value)}>
-            <option value="view-1">View 1</option>
-            <option value="view-2">View 2</option>
-          </select>
-        </label>
       </header>
-      <main className="home-main" data-view={viewMode}>
+      <main className="home-main">
         <section className="welcome">
           <div className="welcome-copy">
             <h1>Find your place.<br /><span>Keep learning.</span></h1>
@@ -608,13 +598,12 @@ export default function Home() {
               setProfile((state) => ({ ...state, breakReminders: enabled }));
               if (!enabled) setBreakState('idle');
             }} /> Suggest study breaks</label>
-          <label>Coach access code<input type="password" value={code} onChange={(event) => { setCode(event.target.value); sessionStorage.setItem('coach-code', event.target.value); }} /></label>
           <p>Coaching sends selected transcript excerpts, check responses, and your analogy preference to Gemini.</p>
         </section></details>
             </div>
             {coachOpen && <section ref={coachRegion} className="coach-inline card" aria-labelledby="coach-title">
               <div className="coach-sheet">
-              <ReadAloud key={panel?.question?.id || panel?.mode || "loading"} code={code}>
+              <ReadAloud key={panel?.question?.id || panel?.mode || "loading"}>
               {busy && <><h2 id="coach-title">Finding the right help</h2><p role="status">Looking through the lecture transcript…</p><button onClick={() => setCoachOpen(false)}>Back to video</button></>}
               {panel && <>
                 <div className="side-title"><h2 id="coach-title">{panel.mode === 'returned' ? 'You’re back at ' + clock(panel.anchor) : panel.mode === 'recover' ? 'Let’s find what you missed' : panel.mode === 'define' ? 'In this lecture' : panel.mode === 'error' ? 'Coach unavailable' : 'Check your understanding'}</h2>
@@ -661,7 +650,7 @@ export default function Home() {
                     <button aria-pressed={answerFormat === 'short'} onClick={() => setAnswerFormat('short')}>Short answer</button>
                   </div>}
                   {answerFormat === 'short' && panel.question.shortPrompt
-                    ? <ShortAnswer question={panel.question} code={code} />
+                    ? <ShortAnswer question={panel.question} />
                     : <>
                   <p className="question">{panel.question.prompt}</p>
                   <div className="answers">{panel.question.options.map((option, index) =>

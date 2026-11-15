@@ -147,7 +147,7 @@ video { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 60vh; bac
 
 .top {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: 1fr;
   min-height: 71px;
 }
 .top .brand { justify-self: start; }
@@ -337,20 +337,3 @@ video { display: block; width: 100%; aspect-ratio: 16 / 9; max-height: 60vh; bac
 .read-aloud-popup { position: fixed; z-index: 20; box-shadow: 0 3px 14px #181d4d35; }
 .short-answer { margin-top: 0; }
 .short-answer textarea { width: 100%; padding: 8px; font: inherit; border: 1px solid var(--line); border-radius: 7px; resize: vertical; }
-
-.mode-picker {
-  display: flex;
-  align-items: center;
-  justify-self: end;
-  gap: 7px;
-  white-space: nowrap;
-  color: var(--muted);
-  font-size: 13px;
-}
-.mode-picker select {
-  width: auto;
-  min-height: 36px;
-  padding: 6px 8px;
-  background: var(--surface);
-  color: var(--ink);
-}
