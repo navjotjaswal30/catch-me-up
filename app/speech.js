@@ -2,16 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-async function requestVoice(code, body, isJson, signal) {
+async function requestVoice(body, isJson, signal) {
   const response = await fetch('/api/voice', {
     method: 'POST', signal, body,
-    headers: { 'x-coach-code': code, ...(isJson ? { 'Content-Type': 'application/json' } : {}) },
+    headers: isJson ? { 'Content-Type': 'application/json' } : undefined,
   });
   if (!response.ok) throw new Error((await response.json()).error || 'Voice request failed.');
   return response;
 }
 
-export function ReadAloud({ code, children }) {
+export function ReadAloud({ children }) {
   const region = useRef(null);
   const request = useRef(null);
   const [selection, setSelection] = useState(null);
@@ -59,7 +59,7 @@ export function ReadAloud({ code, children }) {
     setAudio('');
     setStatus('Preparing audio…');
     try {
-      const response = await requestVoice(code, JSON.stringify({ text }), true, controller.signal);
+      const response = await requestVoice(JSON.stringify({ text }), true, controller.signal);
       const blob = await response.blob();
       if (controller.signal.aborted) return;
       setAudio(URL.createObjectURL(blob));
@@ -79,7 +79,7 @@ export function ReadAloud({ code, children }) {
   </div>;
 }
 
-export function ShortAnswer({ question, code }) {
+export function ShortAnswer({ question }) {
   const [answer, setAnswer] = useState('');
   const [state, setState] = useState('idle');
   const [message, setMessage] = useState('');
@@ -128,7 +128,7 @@ export function ShortAnswer({ question, code }) {
         try {
           const form = new FormData();
           form.append('audio', new Blob(chunks, { type: capture.mimeType }), 'answer');
-          const response = await requestVoice(code, form, false, controller.signal);
+          const response = await requestVoice(form, false, controller.signal);
           const { text } = await response.json();
           if (controller.signal.aborted) return;
           if (text) setAnswer((previous) => [previous.trim(), text].filter(Boolean).join(' ').slice(0, 2000));
@@ -160,7 +160,7 @@ export function ShortAnswer({ question, code }) {
     request.current = controller;
     try {
       const response = await fetch('/api/coach', {
-        method: 'POST', signal: controller.signal, headers: { 'Content-Type': 'application/json', 'x-coach-code': code },
+        method: 'POST', signal: controller.signal, headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ mode: 'grade', prompt: question.shortPrompt, reference: question.why, answer }),
       });
       const result = await response.json();

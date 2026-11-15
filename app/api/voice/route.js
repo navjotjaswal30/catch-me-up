@@ -1,16 +1,8 @@
-import { timingSafeEqual } from 'node:crypto';
-
 export const maxDuration = 30;
 
 export async function POST(request) {
   const key = process.env.ELEVENLABS_API_KEY;
-  const code = process.env.COACH_ACCESS_CODE;
-  if (!key || !code) return Response.json({ error: 'Set ELEVENLABS_API_KEY and COACH_ACCESS_CODE in the server environment.' }, { status: 503 });
-  const provided = Buffer.from(request.headers.get('x-coach-code') || '');
-  const expected = Buffer.from(code);
-  if (provided.length !== expected.length || !timingSafeEqual(provided, expected)) {
-    return Response.json({ error: 'Enter the coach access code in Settings.' }, { status: 401 });
-  }
+  if (!key) return Response.json({ error: 'Set ELEVENLABS_API_KEY in the server environment.' }, { status: 503 });
 
   const maxRecordingBytes = 3 * 1024 * 1024;
   if (Number(request.headers.get('content-length')) > maxRecordingBytes) {

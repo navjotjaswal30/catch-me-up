@@ -1,21 +1,11 @@
-import { timingSafeEqual } from 'node:crypto';
 import { analogyInterests, coachingInstructions, readAnalogy, readQuestion } from '../../../lib/coaching.js';
 
 export const maxDuration = 30;
 
 export async function POST(request) {
   const key = process.env.GEMINI_API_KEY;
-  const code = process.env.COACH_ACCESS_CODE;
   const model = process.env.GEMINI_MODEL?.trim() || 'gemini-3.5-flash-lite';
-  if (!key || !code) {
-    return Response.json({ error: 'AI coaching is disabled. Configure the server environment variables first.' }, { status: 503 });
-  }
-
-  const supplied = Buffer.from(request.headers.get('x-coach-code') || '');
-  const expected = Buffer.from(code);
-  if (supplied.length !== expected.length || !timingSafeEqual(supplied, expected)) {
-    return Response.json({ error: 'Enter the coach access code in Settings.' }, { status: 401 });
-  }
+  if (!key) return Response.json({ error: 'Set GEMINI_API_KEY in the server environment.' }, { status: 503 });
 
   try {
     const raw = await request.text();
